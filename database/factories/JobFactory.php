@@ -21,14 +21,14 @@ class JobFactory extends Factory
             ['type' => 'Post-Mitigation Testing', 'base_price' => 275, 'base_hours' => 1],
         ];
 
-        $jobType = fake()->randomElement($jobTypes);
+        $jobType = $this->faker->randomElement($jobTypes);
 
-        $laborRate = fake()->randomFloat(2, 45, 55);
-        $laborHours = $jobType['base_hours'] + fake()->numberBetween(-1, 2);
-        $invoiceAmount = $jobType['base_price'] + fake()->numberBetween(-200, 400);
+        $laborRate = $this->faker->randomFloat(2, 45, 55);
+        $laborHours = $jobType['base_hours'] + $this->faker->numberBetween(-1, 2);
+        $invoiceAmount = $jobType['base_price'] + $this->faker->numberBetween(-200, 400);
 
         $statuses = ['completed' => 85, 'in_progress' => 10, 'pending' => 5];
-        $status = fake()->randomElement(
+        $status = $this->faker->randomElement(
             array_merge(
                 array_fill(0, $statuses['completed'], 'completed'),
                 array_fill(0, $statuses['in_progress'], 'in_progress'),
@@ -38,7 +38,7 @@ class JobFactory extends Factory
 
         return [
             'job_type' => $jobType['type'],
-            'client_name' => fake()->lastName() . ' ' . fake()->randomElement(['Residence', 'Property', 'Home', 'Estate', 'Building']),
+            'client_name' => $this->faker->lastName() . ' ' . $this->faker->randomElement(['Residence', 'Property', 'Home', 'Estate', 'Building']),
             'invoice_amount' => $invoiceAmount,
             'labor_hours' => max(1, $laborHours),
             'labor_rate' => $laborRate,
