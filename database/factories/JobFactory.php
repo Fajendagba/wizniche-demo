@@ -21,24 +21,27 @@ class JobFactory extends Factory
             ['type' => 'Post-Mitigation Testing', 'base_price' => 275, 'base_hours' => 1],
         ];
 
-        $jobType = $this->faker->randomElement($jobTypes);
+        $jobType = $jobTypes[array_rand($jobTypes)];
 
-        $laborRate = $this->faker->randomFloat(2, 45, 55);
-        $laborHours = $jobType['base_hours'] + $this->faker->numberBetween(-1, 2);
-        $invoiceAmount = $jobType['base_price'] + $this->faker->numberBetween(-200, 400);
+        $laborRate = rand(4500, 5500) / 100;
+        $laborHours = $jobType['base_hours'] + rand(-1, 2);
+        $invoiceAmount = $jobType['base_price'] + rand(-200, 400);
 
-        $statuses = ['completed' => 85, 'in_progress' => 10, 'pending' => 5];
-        $status = $this->faker->randomElement(
-            array_merge(
-                array_fill(0, $statuses['completed'], 'completed'),
-                array_fill(0, $statuses['in_progress'], 'in_progress'),
-                array_fill(0, $statuses['pending'], 'pending')
-            )
-        );
+        $rand = rand(1, 100);
+        if ($rand <= 85) {
+            $status = 'completed';
+        } elseif ($rand <= 95) {
+            $status = 'in_progress';
+        } else {
+            $status = 'pending';
+        }
+
+        $lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez', 'Hernandez', 'Lopez', 'Gonzalez', 'Wilson', 'Anderson', 'Thomas', 'Taylor', 'Moore', 'Jackson', 'Martin'];
+        $suffixes = ['Residence', 'Property', 'Home', 'Estate', 'Building'];
 
         return [
             'job_type' => $jobType['type'],
-            'client_name' => $this->faker->lastName() . ' ' . $this->faker->randomElement(['Residence', 'Property', 'Home', 'Estate', 'Building']),
+            'client_name' => $lastNames[array_rand($lastNames)] . ' ' . $suffixes[array_rand($suffixes)],
             'invoice_amount' => $invoiceAmount,
             'labor_hours' => max(1, $laborHours),
             'labor_rate' => $laborRate,
