@@ -46,7 +46,8 @@ npm run dev
 
 ## Demo
 
-Live demo: https://wizniche-demo.mirrorlog.com
+Frontend: https://wizniche-demo.mirrorlog.com
+Backend API: https://api-wizniche-demo.mirrorlog.com
 
 ---
 
