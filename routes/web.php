@@ -13,6 +13,7 @@ Route::get('/', function () {
             'stats' => '/api/v1/jobs/stats/summary',
             'stats' => '/api/v1/jobs/metadata',
         ],
+        'frontend' => 'https://wizniche-demo.mirrorlog.com/',
         'documentation' => 'https://github.com/Fajendagba/wizniche-demo'
     ]);
 });
