@@ -50,7 +50,7 @@ class RadonJobsSeeder extends Seeder
         $jobs = [];
         $materials = [];
 
-        for ($i = 0; $i < 5000; $i++) {
+        for ($i = 0; $i < 50000; $i++) {
             $jobId = (string) Str::ulid();
             $jobs[] = array_merge(
                 Job::factory()->raw(),
